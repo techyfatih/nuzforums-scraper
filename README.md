@@ -34,3 +34,23 @@ You can view data using SQLite in the command line (e.g. `sqlite3 nuzforums-post
 There are 3 tables: `Forum`, `Topic`, and `Post`. Simply run a select query on any of them (e.g. `SELECT * FROM Forum;`).
 
 NOTE: Running the program will overwrite previous output and log files, so if you're running this multiple times and don't want to lose data, make sure to backup the previous output files (`.db` and/or `.txt` files). 
+
+## Data Format
+### Forum Table
+`forum_id INTEGER PRIMARY KEY` - unique forum identifier\
+`parent_id INTEGER FOREIGN KEY` - reference to parent forum\
+`title TEXT NOT NULL` - forum title\
+`desc TEXT` - forum description
+
+### Topic Table
+`topic_id INTEGER PRIMARY KEY` - unique topic identifier\
+`forum_id INTEGER FOREIGN KEY` - reference to forum containing this topic\
+`title TEXT NOT NULL` - topic title\
+`creator TEXT` - topic creator
+
+### Post Table
+`post_id INTEGER PRIMARY KEY` - unique post identifier\
+`topic_id INTEGER NOT NULL FOREIGN KEY` - reference to topic containing post\
+`poster TEXT NOT NULL` - post author\
+`time TEXT NOT NULL` - post datetime\
+`text TEXT NOT NULL` - post content
