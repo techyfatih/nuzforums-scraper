@@ -5,15 +5,29 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
+class NuzforumsForum(Item):
+    forumId = Field()
+    parentId = Field()
+    title = Field()
+    desc = Field()
 
-class NuzforumsPost(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+class NuzforumsTopic(Item):
+    topicId = Field()
+    forumId = Field()
+    title = Field()
+    creator = Field()
 
-    username = scrapy.Field()
-    time = scrapy.Field()
-    text = scrapy.Field()
+class NuzforumsPost(Item):
+    topicId = Field()
+    poster = Field()
+    time = Field()
+    text = Field()
 
-    pass
+    def __repr__(self):
+        return repr({
+            'topicId': self['topicId'],
+            'poster': self['topicId'],
+            'time': self['time']
+        })
